@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071321">
+  <meta name="description" content="Central segura de monitoramento de câmeras IP.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/camera.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Câmera Universal 360</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Câmera Universal 360 início"><span class="brand-mark">◉</span><span>Câmera <b>Universal 360</b></span></a>
+      <div class="side-label">CENTRAL</div>
+      <button class="nav-item active" data-view="overview"><span>▦</span> Visão geral</button>
+      <button class="nav-item" data-view="cameras"><span>▣</span> Minhas câmeras</button>
+      <button class="nav-item" data-view="recordings"><span>◷</span> Gravações</button>
+      <button class="nav-item" data-view="events"><span>◉</span> Eventos e alertas</button>
+      <div class="side-label">SISTEMA</div>
+      <button class="nav-item" data-view="connections"><span>⌁</span> Conectividade</button>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Interface pronta para configuração <small>Versão inicial · 0.1.0</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Abrir menu">☰</button>
+        <div><div class="eyebrow">CENTRAL DE SEGURANÇA</div><h1 id="pageTitle">Visão geral</h1></div>
+        <div class="top-actions"><span class="connection"><i></i> Painel local</span><button class="primary" id="addCameraTop">＋ Adicionar câmera</button></div>
+      </header>
+      <section class="content" id="content">
+        <div class="welcome"><div><span class="eyebrow">SEU AMBIENTE, EM UM SÓ LUGAR</span><h2>Monitoramento inteligente.<br><em>Sem ficar preso a uma marca.</em></h2><p>Organize suas câmeras IP e prepare sua central para ONVIF, RTSP e acesso remoto seguro.</p><button class="primary" id="addCameraHero">＋ Cadastrar primeira câmera</button></div><div class="hero-art"><div class="radar r1"></div><div class="radar r2"></div><div class="camera-glyph">◉</div><span class="art-tag">UNIVERSAL IP CAMERA</span></div></div>
+        <div class="stats"><article class="stat"><span>CÂMERAS CADASTRADAS</span><strong id="cameraCount">0</strong><small>Na sua lista</small></article><article class="stat"><span>AO VIVO</span><strong>—</strong><small>Aguardando gateway de vídeo</small></article><article class="stat"><span>EVENTOS HOJE</span><strong>0</strong><small>Detecção ainda não ativada</small></article><article class="stat"><span>ARMAZENAMENTO</span><strong>—</strong><small>Servidor ainda não configurado</small></article></div>
+        <div class="section-head"><div><span class="eyebrow">DISPOSITIVOS</span><h3>Suas câmeras</h3></div><button class="text-button" id="addCameraInline">＋ Adicionar</button></div>
+        <div class="camera-grid" id="cameraGrid"><div class="empty-state"><div class="empty-icon">▣</div><b>Nenhuma câmera cadastrada</b><p>Adicione uma câmera IP para começar a montar seu painel.</p><button class="secondary" id="addCameraEmpty">Cadastrar câmera</button></div></div>
+        <div class="notice"><span>ⓘ</span><div><b>Compatibilidade transparente</b><p>ONVIF e RTSP serão conectados por um gateway seguro. Câmeras com nuvem ou P2P proprietário exigem integração oficial do fabricante. Esta primeira versão é a interface inicial e ainda não transmite vídeo real.</p></div></div>
+      </section>
+      <footer> CÂMERA UNIVERSAL 360 <span>Privacidade e segurança desde o projeto.</span></footer>
+    </main>
+  </div>
+  <dialog id="cameraDialog" class="dialog">
+    <form id="cameraForm">
+      <div class="dialog-head"><div><span class="eyebrow">NOVO DISPOSITIVO</span><h2>Adicionar câmera</h2></div><button type="button" class="close" id="closeDialog" aria-label="Fechar">×</button></div>
+      <label>Nome para identificar<input name="name" required maxlength="50" placeholder="Ex.: Entrada da casa"></label>
+      <label>Fabricante (opcional)<input name="brand" maxlength="50" placeholder="Ex.: Intelbras, Hikvision, Tapo"></label>
+      <label>Tipo de conexão<select name="protocol"><option value="ONVIF">ONVIF — descoberta e controle</option><option value="RTSP">RTSP — transmissão IP</option><option value="OTHER">Outro / integração do fabricante</option></select></label>
+      <label>Endereço IP ou nome do dispositivo<input name="host" required maxlength="120" placeholder="Ex.: 192.168.1.120"></label>
+      <label>Porta (opcional)<input name="port" inputmode="numeric" placeholder="Ex.: 554"></label>
+      <div class="form-note">Por segurança, esta versão não solicita nem armazena senha da câmera. As credenciais serão configuradas no gateway protegido, nunca no navegador.</div>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelDialog">Cancelar</button><button class="primary" type="submit">Salvar na lista</button></div>
+    </form>
+  </dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
