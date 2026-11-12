@@ -1,0 +1,12 @@
+{
+  "name": "Câmera Universal 360",
+  "short_name": "Câmera 360",
+  "description": "Central universal de monitoramento de câmeras IP.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#071321",
+  "theme_color": "#071321",
+  "icons": [{ "src": "/icons/camera.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
