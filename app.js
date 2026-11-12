@@ -5,6 +5,21 @@ const STORAGE_KEY = "cu360.camera-list.v1";
 let cameras = [];
 try { cameras = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); if (!Array.isArray(cameras)) cameras = []; } catch { cameras = []; }
 
+// Dispositivos Yoosee informados pelo usuário. Cadastro local inicial, sem credenciais.
+// O acesso RTSP/ONVIF ainda precisa ser testado no gateway da rede.
+const knownYooseeCameras = [
+  { id: "yoosee-serralheria-4667586838", name: "Serralheria", brand: "Yoosee", protocol: "RTSP (a testar)", host: "192.168.15.3", port: "554", cameraId: "4667586838", firmware: "33.0.25", mac: "34:7d:e4:7e:fb:8b", createdAt: new Date().toISOString() },
+  { id: "yoosee-patio-4586709064", name: "Pátio", brand: "Yoosee", protocol: "RTSP (a testar)", host: "192.168.0.100", port: "554", cameraId: "4586709064", firmware: "40.1.22", mac: "d8:3a:36:73:57:05", createdAt: new Date().toISOString() }
+];
+let seededCameras = false;
+for (const known of knownYooseeCameras) {
+  if (!cameras.some(camera => camera.host === known.host || camera.cameraId === known.cameraId)) {
+    cameras.push(known);
+    seededCameras = true;
+  }
+}
+if (seededCameras) localStorage.setItem(STORAGE_KEY, JSON.stringify(cameras));
+
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(cameras)); renderCameras(); }
 function openDialog() { form.reset(); dialog.showModal(); }
 ["#addCameraTop","#addCameraHero","#addCameraInline","#addCameraEmpty"].forEach(id => $(id)?.addEventListener("click", openDialog));
